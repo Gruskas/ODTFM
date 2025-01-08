@@ -15,7 +15,7 @@ public class Application extends javafx.application.Application {
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         stage.setTitle("OdtFileManager");
-//        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/logo.png")).toExternalForm()));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/logo.png")).toExternalForm()));
         stage.setScene(scene);
         stage.show();
     }
