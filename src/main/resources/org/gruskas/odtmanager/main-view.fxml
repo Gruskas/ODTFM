@@ -10,34 +10,42 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gruskas.odtmanager.Controller">
     <children>
-        <Pane prefHeight="100.0" styleClass="header">
-            <children>
-                <MenuBar layoutX="2.0" layoutY="2.0" prefHeight="6.0" prefWidth="248.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="Programs">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Browser" onAction="#startBrowser"/>
-                        <MenuItem mnemonicParsing="false" text="Files" onAction="#startFiles"/>
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Settings" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="About" />
-                        <MenuItem mnemonicParsing="false" text="Report a Bug" />
-                            </items>
-                        </Menu>
-                    </menus>
-                </MenuBar>
-                <Button layoutX="1200.0" layoutY="62.0" mnemonicParsing="false" onAction="#newFile" text="New File" textAlignment="CENTER" />
-                <Button layoutX="260.0" layoutY="62.0" mnemonicParsing="false" text="New Folder" textAlignment="CENTER" />
-                <TextArea layoutY="26.0" prefHeight="77.0" prefWidth="248.0" />
-            </children>
-        </Pane>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+              <Pane maxWidth="-Infinity" prefHeight="100.0" prefWidth="249.0" styleClass="header">
+                  <children>
+                      <MenuBar layoutX="-7.0" prefHeight="25.0" prefWidth="255.0">
+                          <menus>
+                              <Menu mnemonicParsing="false" text="Programs">
+                                  <items>
+                                      <MenuItem mnemonicParsing="false" onAction="#startBrowser" text="Browser" />
+                              <MenuItem mnemonicParsing="false" onAction="#startFiles" styleClass="custom-menu-item" text="Files" />
+                                  </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Edit">
+                                  <items>
+                                      <MenuItem mnemonicParsing="false" text="Settings" />
+                                  </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Help">
+                                  <items>
+                                      <MenuItem mnemonicParsing="false" text="About" />
+                              <MenuItem mnemonicParsing="false" text="Report a Bug" />
+                                  </items>
+                              </Menu>
+                          </menus>
+                      </MenuBar>
+                      <TextArea layoutY="25.0" prefHeight="75.0" prefWidth="248.0" />
+                  </children>
+              </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="1031.0" styleClass="header2" HBox.hgrow="ALWAYS">
+               <children>
+                      <Button layoutX="84.0" layoutY="60.0" mnemonicParsing="false" text="New Folder" textAlignment="CENTER" />
+                      <Button layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#newFile" text="New File" textAlignment="CENTER" />
+               </children>
+            </Pane>
+         </children>
+      </HBox>
         <HBox minHeight="100.0" prefHeight="546.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
             <children>
                 <ListView fx:id="folderListView" styleClass="folderListView" VBox.vgrow="ALWAYS" />
