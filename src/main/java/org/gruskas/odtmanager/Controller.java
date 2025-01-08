@@ -30,7 +30,7 @@ public class Controller {
     private TableColumn<File, String> nameColumn;
 
     @FXML
-    private TableColumn<File, Long> sizeColumn;
+    TableColumn<File, String> sizeColumn;
 
     @FXML
     private TableColumn<File, String> dateColumn;
@@ -73,7 +73,11 @@ public class Controller {
 
     private void setCellValue() {
         nameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getName()));
-        sizeColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleLongProperty(cellData.getValue().length()).asObject());
+        sizeColumn.setCellValueFactory(cellData -> {
+            String readableSize = formatSize(cellData.getValue().length());
+            return new javafx.beans.property.SimpleStringProperty(readableSize);
+        });
+
         dateColumn.setCellValueFactory(cellData -> {
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             return new javafx.beans.property.SimpleStringProperty(sdf.format(new java.util.Date(cellData.getValue().lastModified())));
@@ -157,4 +161,17 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+    private String formatSize(long size) {
+        if (size < 1024) {
+            return size + " B";
+        } else if (size < 1024 * 1024) {
+            return (size / 1024) + " KB";
+        } else if (size < 1024 * 1024 * 1024) {
+            return (size / (1024 * 1024)) + " MB";
+        } else {
+            return (size / (1024 * 1024 * 1024)) + " GB";
+        }
+    }
+
 }
