@@ -16,8 +16,8 @@
                     <menus>
                         <Menu mnemonicParsing="false" text="Programs">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Browser" />
-                        <MenuItem mnemonicParsing="false" text="Files" />
+                                <MenuItem mnemonicParsing="false" text="Browser" onAction="#startBrowser"/>
+                        <MenuItem mnemonicParsing="false" text="Files" onAction="#startFiles"/>
                             </items>
                         </Menu>
                         <Menu mnemonicParsing="false" text="Edit">

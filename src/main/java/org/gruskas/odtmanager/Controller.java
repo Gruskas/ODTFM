@@ -10,6 +10,8 @@ import javafx.scene.input.MouseEvent;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -116,5 +118,43 @@ public class Controller {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return today.format(formatter);
+    }
+
+    public void startBrowser() {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    URI uri;
+                    try {
+                        uri = new URI("https://gruskas.lol");
+                    } catch (URISyntaxException e) {
+                        throw new RuntimeException(e);
+                    }
+                    desktop.browse(uri);
+                } else {
+                    System.out.println("Error while starting browser.");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startFiles() {
+        try {
+            File file = new File(System.getProperty("user.home"));
+
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    desktop.open(file);
+                } else {
+                    System.out.println("Error while starting files.");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
