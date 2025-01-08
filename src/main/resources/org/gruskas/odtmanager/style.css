@@ -1,0 +1,76 @@
+* {
+    -fx-font-family: "Maple Mono", "Lucida Console", monospace;
+    -fx-background-color: #131022;
+    -fx-text-fill: white;
+}
+
+.folderListView {
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.folderListView .list-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-padding: 5;
+}
+
+.folderListView .list-cell:hover {
+    -fx-background-color: #6d51c1;
+    -fx-cursor: hand;
+}
+
+.folderListView .list-cell:filled:selected {
+    -fx-background-color: #2f2553;
+    -fx-font-weight: bold;
+}
+
+.header {
+    -fx-border-color: black;
+    -fx-border-width: 0 0 1px 0;
+}
+
+Button {
+    -fx-border-color: white;
+    -fx-background-color: #131022;
+    -fx-border-radius: 10;
+}
+
+Button:hover {
+    -fx-background-color: black;
+    -fx-cursor: hand;
+}
+
+.table-view {
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px 0 0 1px;
+}
+
+.table-view .column-header {
+    -fx-border-color: #ccc;
+    -fx-border-width: 0 1px 0 0;
+}
+
+.table-cell:hover {
+    -fx-background-color: #6d51c1;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-background-color: #2f2553;
+    -fx-font-weight: bold;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+.table-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center;
+}
+
+.list-cell:empty {
+    visibility:hidden
+}
