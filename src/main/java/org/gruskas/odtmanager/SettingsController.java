@@ -21,5 +21,10 @@ public class SettingsController {
         System.out.println("TextField value: " + textFieldValue);
         System.out.println("CheckBox selected: " + isChecked);
     }
+
+    public void initialize() {
+        String content = ConfigFileManager.folderPath;
+        inputTextField.setText(content);
+    }
 }
 

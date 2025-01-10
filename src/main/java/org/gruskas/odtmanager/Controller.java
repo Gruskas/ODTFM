@@ -26,6 +26,7 @@ import java.util.Scanner;
 public class Controller {
     String currentFolderPath = null;
     private final Stage stage = Application.stage;
+    String folderPath = ConfigFileManager.folderPath;
 
     @FXML
     private ListView<String> folderListView;
@@ -61,8 +62,6 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        Scanner scanner = new Scanner(System.in);
-        String folderPath = scanner.nextLine();
         ArrayList<String> folders = FilesAndFolders.getFolders(folderPath);
         folderListView.getItems().addAll(folders);
         folderListView.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
