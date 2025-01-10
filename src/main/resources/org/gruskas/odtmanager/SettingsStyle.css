@@ -1,0 +1,34 @@
+* {
+    -fx-font-family: "Maple Mono", "Lucida Console", monospace;
+    -fx-background-color: #131022;
+    -fx-text-fill: white;
+}
+
+Button {
+    -fx-border-color: white;
+    -fx-background-color: #131022;
+    -fx-border-radius: 10;
+}
+
+Button:hover {
+    -fx-background-color: black;
+    -fx-cursor: hand;
+}
+
+.label {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+}
+
+.menu-item:hover, .menu:hover {
+    -fx-background-color: #6d51c1;
+    /*-fx-font-weight: bold;*/
+}
+
+Pane {
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+CheckBox {
+    -fx-border-color: #ccc;
+}

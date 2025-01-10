@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<HBox prefHeight="360.0" prefWidth="640.0" stylesheets="@../SettingsStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="83.0" layoutY="30.0" text="Path to main folder" />
+            <Label layoutX="30.0" layoutY="69.0" text="Generating topics in a table" />
+         </children>
+      </Pane>
+      <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+         <children>
+            <TextField layoutX="71.0" layoutY="27.0" />
+            <Button layoutX="374.0" layoutY="321.0" mnemonicParsing="false" text="SAVE" />
+            <CheckBox layoutX="81.0" layoutY="79.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="65.0" text="?" />
+         </children>
+      </Pane>
+   </children>
+</HBox>
