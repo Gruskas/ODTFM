@@ -15,11 +15,11 @@ public class SettingsController {
 
     @FXML
     public void saveButton() {
-        String textFieldValue = inputTextField.getText();
+        ConfigFileManager.folderPath = inputTextField.getText();
         boolean isChecked = checkBox.isSelected();
 
-        System.out.println("TextField value: " + textFieldValue);
-        System.out.println("CheckBox selected: " + isChecked);
+        System.out.println("TextField value: " + ConfigFileManager.folderPath );
+        ConfigFileManager.saveConfig();
     }
 
     public void initialize() {

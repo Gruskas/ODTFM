@@ -24,9 +24,23 @@ public class ConfigFileManager {
     public static void hideFile() {
         if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             try {
-                Runtime.getRuntime().exec("attrib +h \"" + file + "\"");
+                Process process = Runtime.getRuntime().exec("attrib +h \"" + file + "\"");
+                process.waitFor();
                 System.out.println("File hidden!");
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.err.println("This feature only works on Windows.");
+        }
+    }
+
+    public static void unhideFile() {
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            try {
+                Process process = Runtime.getRuntime().exec("attrib -h \"" + file + "\"");
+                process.waitFor();
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
@@ -52,5 +66,27 @@ public class ConfigFileManager {
         }
 
         folderPath = configMap.get("Path");
+        if (folderPath == null || folderPath.isEmpty()) {
+            folderPath = System.getProperty("user.home");
+        }
+    }
+
+    public static void saveConfig() {
+        Map<String, String> configMap = new HashMap<>();
+        configMap.put("Path", folderPath);
+
+        try {
+            unhideFile();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for (Map.Entry<String, String> entry : configMap.entrySet()) {
+                    writer.write(entry.getKey() + "=" + entry.getValue());
+                    writer.newLine();
+                }
+                System.out.println("Configuration saved successfully!");
+                hideFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
