@@ -19,6 +19,7 @@ public class SettingsController {
         boolean isChecked = checkBox.isSelected();
 
         System.out.println("TextField value: " + ConfigFileManager.folderPath );
+        System.out.println("checkBox: " + isChecked);
         ConfigFileManager.saveConfig();
     }
 

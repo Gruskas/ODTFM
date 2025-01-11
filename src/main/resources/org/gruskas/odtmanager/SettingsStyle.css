@@ -15,20 +15,49 @@ Button:hover {
     -fx-cursor: hand;
 }
 
-.label {
-    -fx-background-color: transparent;
-    -fx-alignment: center;
+.check-box:selected .mark {
+    -fx-background-color: white;
+    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
 }
 
-.menu-item:hover, .menu:hover {
-    -fx-background-color: #6d51c1;
-    /*-fx-font-weight: bold;*/
+.check-box .mark {
+    visibility: hidden;
 }
+
+.check-box:selected .mark {
+    visibility: visible;
+}
+
+.check-box {
+    -fx-border-width: 0;
+}
+
+.check-box .box {
+    -fx-border-radius: 0;
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: green;
+}
+
+TextField * {
+    -fx-background-color: white;
+}
+
+TextField {
+    -fx-border-width: 0;
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+    -fx-text-fill: black;
+}
+
 
 Pane {
     -fx-border-color: #ccc;
     -fx-border-width: 1px;
 }
+
 CheckBox {
     -fx-border-color: #ccc;
 }
