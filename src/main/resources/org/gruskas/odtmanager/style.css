@@ -82,5 +82,17 @@ Button:hover {
 
 .menu-item:hover, .menu:hover {
     -fx-background-color: #6d51c1;
+}
+
+.menu-item:hover {
     /*-fx-font-weight: bold;*/
+    -fx-background-radius: 7;
+}
+
+.context-menu {
+    -fx-padding: 4;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+    -fx-background-radius: 7;
+    -fx-border-radius: 7;
 }
