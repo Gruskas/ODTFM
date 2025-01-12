@@ -21,7 +21,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Controller {
     String currentFolderPath = null;
@@ -198,4 +197,30 @@ public class Controller {
             e.printStackTrace();
         }
     }
+
+    public void startSpotify() {
+        try {
+            ProcessBuilder processBuilder;
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("windows")) {
+                // Windows
+                processBuilder = new ProcessBuilder(System.getProperty("user.home") + "\\AppData\\Roaming\\Spotify\\Spotify.exe");
+            } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+                // Linux
+                processBuilder = new ProcessBuilder("spotify");
+            } else if (os.contains("mac")) {
+                // MacOS
+                processBuilder = new ProcessBuilder("/Applications/Spotify.app/Contents/MacOS/Spotify");
+            } else {
+                throw new UnsupportedOperationException("Unsupported operating system: " + System.getProperty("os.name"));
+            }
+
+            processBuilder.start();
+            System.out.println("Spotify launched!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
