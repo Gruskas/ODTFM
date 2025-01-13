@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" prefHeight="360.0" prefWidth="640.0" stylesheets="@../SettingsStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gruskas.odtmanager.SettingsController">
+    <children>
+        <Pane HBox.hgrow="ALWAYS">
+            <children>
+                <TextField fx:id="inputTextField" alignment="TOP_LEFT" layoutX="95.0" layoutY="130.0" prefHeight="200.0" prefWidth="450.0" promptText="Enter your issue here..." />
+                <Button layoutX="565.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveButton" text="Submit" />
+            <Label alignment="CENTER" layoutX="210.0" layoutY="6.0" prefHeight="80.0" prefWidth="220.0" text="REPORT A BUG" textAlignment="CENTER">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="95.0" layoutY="106.0" text="Describe the issue and steps to reproduce:" />
+            </children>
+        </Pane>
+    </children>
+</HBox>
