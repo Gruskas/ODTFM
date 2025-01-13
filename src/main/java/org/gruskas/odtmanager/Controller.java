@@ -45,7 +45,7 @@ public class Controller {
     @FXML
     private void newFile() {
         String date = getLocalTime();
-        File file = new File(currentFolderPath + "\\" + date + ".odt");
+        File file = new File(currentFolderPath + File.separator + date + ".odt");
         try {
             if (file.createNewFile()) {
                 loadFilesFromFolder(currentFolderPath);
@@ -65,7 +65,7 @@ public class Controller {
         folderListView.getItems().addAll(folders);
         folderListView.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
             if (newValue != null) {
-                currentFolderPath = folderPath + "\\" + newValue;
+                currentFolderPath = folderPath + File.separator + newValue;
                 loadFilesFromFolder(currentFolderPath);
                 System.out.println("Path " + currentFolderPath);
             }
