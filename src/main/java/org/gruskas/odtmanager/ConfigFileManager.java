@@ -71,7 +71,7 @@ public class ConfigFileManager {
         }
     }
 
-    public static void saveConfig() {
+    public static boolean saveConfig() {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("Path", folderPath);
 
@@ -82,11 +82,12 @@ public class ConfigFileManager {
                     writer.write(entry.getKey() + "=" + entry.getValue());
                     writer.newLine();
                 }
-                System.out.println("Configuration saved successfully!");
                 hideFile();
+                return true;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 }

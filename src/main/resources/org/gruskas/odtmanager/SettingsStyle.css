@@ -66,3 +66,8 @@ Pane {
     -fx-border-color: #ccc;
     -fx-border-width: 1px;
 }
+
+/* saveConfirm label */
+#saveConfirm {
+    -fx-text-fill: green;
+}
