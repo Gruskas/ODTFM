@@ -4,6 +4,7 @@
     -fx-text-fill: white;
 }
 
+/* Folder list view */
 .folderListView {
     -fx-border-color: #ccc;
     -fx-border-width: 1px 0 0 0;
@@ -26,11 +27,17 @@
     -fx-font-weight: bold;
 }
 
+.list-cell:empty {
+    visibility: hidden;
+}
+
+/* Header */
 .header {
     -fx-border-color: #ccc;
     -fx-border-width: 0 1px 0 0;
 }
 
+/* Button */
 Button {
     -fx-border-color: white;
     -fx-background-color: #131022;
@@ -42,16 +49,19 @@ Button:hover {
     -fx-cursor: hand;
 }
 
+/* Table */
 .table-view {
     -fx-border-color: #ccc;
     -fx-border-width: 1px 0 0 1px;
 }
 
+/* Table column header */
 .table-view .column-header {
     -fx-border-color: #ccc;
     -fx-border-width: 0 1px 0 0;
 }
 
+/* Table cell */
 .table-cell:hover {
     -fx-background-color: #6d51c1;
 }
@@ -71,21 +81,19 @@ Button:hover {
     -fx-alignment: center;
 }
 
-.list-cell:empty {
-    visibility: hidden;
-}
-
+/* Label (text) */
 .label {
     -fx-background-color: transparent;
     -fx-alignment: center;
 }
 
+/* Menu and context menu  */
 .menu-item:hover, .menu:hover {
     -fx-background-color: #6d51c1;
 }
 
 .menu-item:hover {
-    /*-fx-font-weight: bold;*/
+    /* -fx-font-weight: bold; */
     -fx-background-radius: 7;
 }
 

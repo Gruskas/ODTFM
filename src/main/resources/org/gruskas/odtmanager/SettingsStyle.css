@@ -4,6 +4,36 @@
     -fx-text-fill: white;
 }
 
+/* CheckBox */
+CheckBox {
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+CheckBox .box {
+    -fx-border-radius: 0;
+    -fx-background-color: white;
+}
+
+CheckBox:selected .box {
+    -fx-background-color: green;
+}
+
+CheckBox .mark {
+    visibility: hidden;
+}
+
+CheckBox:selected .mark {
+    visibility: visible;
+    -fx-background-color: white;
+    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
+}
+
+CheckBox {
+    -fx-border-color: #ccc;
+}
+
+/* Button */
 Button {
     -fx-border-color: white;
     -fx-background-color: #131022;
@@ -15,36 +45,7 @@ Button:hover {
     -fx-cursor: hand;
 }
 
-.check-box:selected .mark {
-    -fx-background-color: white;
-    -fx-shape: "M1.73,12.91 8.1,19.28 22.79,4.59 22.79,1.59 8.1,16.28 1.73,9.91";
-}
-
-.check-box .mark {
-    visibility: hidden;
-}
-
-.check-box:selected .mark {
-    visibility: visible;
-}
-
-.check-box {
-    -fx-border-width: 0;
-}
-
-.check-box .box {
-    -fx-border-radius: 0;
-    -fx-background-color: white;
-}
-
-.check-box:selected .box {
-    -fx-background-color: green;
-}
-
-TextField * {
-    -fx-background-color: white;
-}
-
+/* TextField */
 TextField {
     -fx-border-width: 0;
     -fx-background-color: white;
@@ -52,12 +53,12 @@ TextField {
     -fx-text-fill: black;
 }
 
+TextField * {
+    -fx-background-color: white;
+}
 
+/* Pane */
 Pane {
     -fx-border-color: #ccc;
     -fx-border-width: 1px;
-}
-
-CheckBox {
-    -fx-border-color: #ccc;
 }
