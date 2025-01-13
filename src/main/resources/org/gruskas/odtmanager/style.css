@@ -34,7 +34,7 @@
 /* Header */
 .header {
     -fx-border-color: #ccc;
-    -fx-border-width: 0 1px 0 0;
+    -fx-border-width: 0 0 0 1;
 }
 
 /* Button */
