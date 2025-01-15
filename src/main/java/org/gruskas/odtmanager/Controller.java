@@ -198,6 +198,25 @@ public class Controller {
         }
     }
 
+    public void viewReport() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/report-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("SettingsStyle.css")).toExternalForm());
+
+            Stage settingsStage = new Stage();
+            settingsStage.setTitle("OdtFileManager - Report a bug");
+            settingsStage.initModality(Modality.WINDOW_MODAL);
+            settingsStage.initOwner(stage);
+            settingsStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/logo.png")).toExternalForm()));
+            settingsStage.setScene(scene);
+
+            settingsStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void startSpotify() {
         try {
             ProcessBuilder processBuilder;
