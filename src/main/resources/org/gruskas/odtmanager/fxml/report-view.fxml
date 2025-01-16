@@ -12,7 +12,7 @@
         <Pane HBox.hgrow="ALWAYS">
             <children>
                 <TextField fx:id="inputTextField" alignment="TOP_LEFT" layoutX="95.0" layoutY="130.0" prefHeight="200.0" prefWidth="450.0" promptText="Enter your issue here..." />
-                <Button layoutX="565.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveButton" text="Submit" />
+                <Button layoutX="565.0" layoutY="314.0" mnemonicParsing="false" onAction="#submitButton" text="Submit" />
             <Label alignment="CENTER" layoutX="210.0" layoutY="6.0" prefHeight="80.0" prefWidth="220.0" text="REPORT A BUG" textAlignment="CENTER">
                <font>
                   <Font size="27.0" />

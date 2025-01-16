@@ -13,7 +13,7 @@ import java.util.Objects;
 import static org.gruskas.odtmanager.Application.stage;
 
 public class ReportController {
-    public void saveButton(ActionEvent event) {
+    public void submitButton(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/thankyou-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
