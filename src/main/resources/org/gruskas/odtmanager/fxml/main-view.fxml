@@ -1,57 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gruskas.odtmanager.Controller">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="100.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gruskas.odtmanager.Controller">
     <children>
         <HBox>
             <children>
                 <Pane maxWidth="250.0" minWidth="250.0" prefHeight="100.0" HBox.hgrow="ALWAYS">
                     <children>
-                  <VBox prefHeight="100.0" prefWidth="250.0">
-                     <children>
-                              <MenuBar VBox.vgrow="ALWAYS">
-                                  <menus>
-                                      <Menu mnemonicParsing="false" text="Programs">
-                                          <items>
-                                              <MenuItem mnemonicParsing="false" onAction="#startBrowser" text="Browser" />
-                                              <MenuItem mnemonicParsing="false" onAction="#startFiles" text="Files" />
-                                              <MenuItem mnemonicParsing="false" onAction="#startSpotify" text="Spotify" />
-                                          </items>
-                                      </Menu>
-                                      <Menu mnemonicParsing="false" text="Edit">
-                                          <items>
-                                              <MenuItem mnemonicParsing="false" onAction="#viewSettings" text="Settings" />
-                                          </items>
-                                      </Menu>
-                                      <Menu mnemonicParsing="false" text="Help">
-                                          <items>
-                                              <MenuItem mnemonicParsing="false" text="About" />
-                                              <MenuItem mnemonicParsing="false" onAction="#viewReport" text="Report a Bug" />
-                                          </items>
-                                      </Menu>
-                                  </menus>
-                              </MenuBar>
-                              <TextArea VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
+                        <VBox prefHeight="100.0" prefWidth="250.0">
+                            <children>
+                                <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="256.0" VBox.vgrow="ALWAYS">
+                                    <menus>
+                                        <Menu mnemonicParsing="false" text="Programs">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#startBrowser" text="Browser" />
+                                                <MenuItem mnemonicParsing="false" onAction="#startFiles" text="Files" />
+                                                <MenuItem mnemonicParsing="false" onAction="#startSpotify" text="Spotify" />
+                                            </items>
+                                        </Menu>
+                                        <Menu mnemonicParsing="false" text="Edit">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#viewSettings" text="Settings" />
+                                            </items>
+                                        </Menu>
+                                        <Menu mnemonicParsing="false" text="Help">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" text="About" />
+                                                <MenuItem mnemonicParsing="false" onAction="#viewReport" text="Report a Bug" />
+                                            </items>
+                                        </Menu>
+                                    </menus>
+                                    <VBox.margin>
+                                        <Insets left="-10.0" />
+                                    </VBox.margin>
+                                </MenuBar>
+                                <TextArea VBox.vgrow="ALWAYS" />
+                            </children>
+                        </VBox>
                     </children>
                 </Pane>
                 <Pane prefHeight="100.0" prefWidth="1030.0" styleClass="header" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button layoutX="110.0" layoutY="60.0" mnemonicParsing="false" text="New Folder" textAlignment="CENTER" />
-                        <Button layoutX="10.0" layoutY="60.0" mnemonicParsing="false" onAction="#newFile" text="New File" textAlignment="CENTER" />
+                        <Button layoutX="90.0" layoutY="60.0" mnemonicParsing="false" text="New Folder" textAlignment="CENTER" />
+                        <Button layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#newFile" text="New File" textAlignment="CENTER" />
                     </children>
                 </Pane>
             </children>
