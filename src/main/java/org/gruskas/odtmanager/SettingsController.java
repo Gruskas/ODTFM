@@ -17,7 +17,7 @@ public class SettingsController {
     private TextField inputTextField;
 
     @FXML
-    private CheckBox checkBox;
+    private CheckBox archiveFiles;
 
     @FXML
     private Label saveConfirm;
@@ -25,10 +25,10 @@ public class SettingsController {
     @FXML
     public void saveButton() {
         ConfigFileManager.folderPath = inputTextField.getText();
-        boolean isChecked = checkBox.isSelected();
+        ConfigFileManager.archiveFiles = archiveFiles.isSelected();
 
         System.out.println("TextField value: " + ConfigFileManager.folderPath);
-        System.out.println("checkBox: " + isChecked);
+        System.out.println("archiveFiles: " + ConfigFileManager.archiveFiles);
         if (ConfigFileManager.saveConfig()) {
             System.out.println("Configuration saved successfully!");
             saveConfirm.setText("Config has been saved!");
@@ -38,8 +38,8 @@ public class SettingsController {
     }
 
     public void initialize() {
-        String content = ConfigFileManager.folderPath;
-        inputTextField.setText(content);
+        inputTextField.setText(ConfigFileManager.folderPath);
+        archiveFiles.setSelected(ConfigFileManager.archiveFiles);
     }
 
     private void refreshMainView() {

@@ -13,14 +13,14 @@
       <Pane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Label layoutX="14.0" layoutY="15.0" text="Path to main folder" />
-            <Label layoutX="14.0" layoutY="60.0" prefHeight="18.0" prefWidth="152.0" text="Generating topics in a table" />
+            <Label layoutX="14.0" layoutY="60.0" prefHeight="18.0" prefWidth="152.0" text="Archive files" />
          </children>
       </Pane>
       <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
          <children>
             <TextField fx:id="inputTextField" layoutX="45.0" layoutY="15.0" prefHeight="25.0" prefWidth="350.0" />
             <Button layoutX="380.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveButton" text="SAVE" />
-            <CheckBox fx:id="checkBox" layoutX="45.0" layoutY="60.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <CheckBox fx:id="archiveFiles" layoutX="45.0" layoutY="60.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
             <Label fx:id="saveConfirm" alignment="CENTER_RIGHT" layoutX="197.0" layoutY="317.0" prefHeight="26.0" prefWidth="176.0" />
          </children>
          <effect>

@@ -7,10 +7,11 @@ import java.util.Map;
 public class ConfigFileManager {
     static File file = new File(System.getProperty("user.home") + File.separator + ".ODTFM.config");
     static String folderPath;
+    static boolean archiveFiles;
 
     public static void createFile() {
         if (file.exists()) {
-            System.out.println("File already exists!");
+            System.out.println("Config file already exists!");
         } else {
             try (BufferedWriter _ = new BufferedWriter(new FileWriter(file))) {
                 System.out.println("The config file was successfully created!.");
@@ -69,11 +70,14 @@ public class ConfigFileManager {
         if (folderPath == null || folderPath.isEmpty()) {
             folderPath = System.getProperty("user.home");
         }
+
+        archiveFiles = Boolean.parseBoolean(configMap.get("Archive files"));
     }
 
     public static boolean saveConfig() {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("Path", folderPath);
+        configMap.put("Archive files", String.valueOf(archiveFiles));
 
         try {
             unhideFile();
