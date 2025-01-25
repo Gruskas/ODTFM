@@ -11,7 +11,7 @@ public class ReportController {
         Platform.runLater(() -> ViewLoader.loadModalView(
                 Application.stage,
                 "fxml/thankyou-view.fxml",
-                "SettingsStyle.css",
+                "modal-style.css",
                 "/org/gruskas/odtmanager/logo.png",
                 "OdtFileManager - Thank you"
         ));

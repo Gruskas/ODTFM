@@ -1,16 +1,11 @@
 package org.gruskas.odtmanager;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.File;
@@ -20,11 +15,9 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Controller {
     String currentFolderPath = null;
-    private final Stage stage = Application.stage;
     String folderPath = ConfigFileManager.folderPath;
 
     @FXML
@@ -180,29 +173,20 @@ public class Controller {
     }
 
     public void viewSettings() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/settings-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("SettingsStyle.css")).toExternalForm());
-
-            Stage settingsStage = new Stage();
-            settingsStage.setTitle("OdtFileManager - Settings");
-            settingsStage.initModality(Modality.WINDOW_MODAL);
-            settingsStage.initOwner(stage);
-            settingsStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/logo.png")).toExternalForm()));
-            settingsStage.setScene(scene);
-
-            settingsStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ViewLoader.loadModalView(
+                Application.stage,
+                "fxml/settings-view.fxml",
+                "modal-style.css",
+                "/org/gruskas/odtmanager/logo.png",
+                "OdtFileManager - Settings"
+        );
     }
 
     public void viewReport() {
         ViewLoader.loadModalView(
                 Application.stage,
                 "fxml/report-view.fxml",
-                "SettingsStyle.css",
+                "modal-style.css",
                 "/org/gruskas/odtmanager/logo.png",
                 "OdtFileManager - Report a bug"
         );
