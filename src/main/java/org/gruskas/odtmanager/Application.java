@@ -27,4 +27,5 @@ public class Application extends javafx.application.Application {
     }
 }
 //          java --module-path target/dist/lib --add-modules javafx.controls,javafx.fxml -jar target/OdtManager-1.0-shaded.jar
+//          java -jar ./target/OdtManager-1.0-shaded.jar
 //          mvn clean package JavaFX:run
