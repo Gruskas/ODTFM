@@ -41,9 +41,18 @@ public class SettingsController {
     public void saveButton() {
         ConfigFileManager.folderPath = inputTextField.getText();
         ConfigFileManager.archiveFiles = archiveFiles.isSelected();
+        ConfigFileManager.months = monthsSpinner.getValue();
+        ConfigFileManager.weeks = weeksSpinner.getValue();
+        ConfigFileManager.days = daysSpinner.getValue();
 
-        System.out.println("TextField value: " + ConfigFileManager.folderPath);
-        System.out.println("archiveFiles: " + ConfigFileManager.archiveFiles);
+        System.out.println(
+                "TextField value: " + ConfigFileManager.folderPath + ", \n" +
+                        "archiveFiles: " + ConfigFileManager.archiveFiles + ", \n" +
+                        "months: " + ConfigFileManager.months + ", \n" +
+                        "weeks: " + ConfigFileManager.weeks + ", \n" +
+                        "days: " + ConfigFileManager.days
+        );
+
         if (ConfigFileManager.saveConfig()) {
             System.out.println("Configuration saved successfully!");
             saveConfirm.setText("Config has been saved!");
