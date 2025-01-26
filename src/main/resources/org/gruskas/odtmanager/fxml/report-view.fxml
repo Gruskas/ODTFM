@@ -9,7 +9,7 @@
 
 <HBox alignment="CENTER" prefHeight="360.0" prefWidth="640.0" stylesheets="@../modal-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gruskas.odtmanager.ReportController">
     <children>
-        <Pane HBox.hgrow="ALWAYS">
+        <Pane styleClass="custom-pane" HBox.hgrow="ALWAYS">
             <children>
                 <TextField fx:id="inputTextField" alignment="TOP_LEFT" layoutX="95.0" layoutY="130.0" prefHeight="200.0" prefWidth="450.0" promptText="Enter your issue here..." />
                 <Button layoutX="565.0" layoutY="314.0" mnemonicParsing="false" onAction="#submitButton" text="Submit" />
