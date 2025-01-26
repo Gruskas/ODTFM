@@ -67,9 +67,9 @@ public class SettingsController {
         dateInput.setVisible(archiveFiles.isSelected());
         archiveFiles.selectedProperty().addListener((_, _, selected) -> dateInput.setVisible(selected));
 
-        monthsSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 12, 0));
-        weeksSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 52, 0));
-        daysSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 365, 0));
+        monthsSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 12, ConfigFileManager.months));
+        weeksSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 52, ConfigFileManager.weeks));
+        daysSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 365, ConfigFileManager.days));
 
     }
 
