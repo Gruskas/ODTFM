@@ -5,6 +5,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -67,6 +68,14 @@ public class Controller {
         setCellValue();
 
         tableView.setOnMouseClicked(this::openFileOnRowClick);
+        tableView.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                File selectedFile = tableView.getSelectionModel().getSelectedItem();
+                if (selectedFile != null && selectedFile.exists()) {
+                    openFile(selectedFile);
+                }
+            }
+        });
     }
 
     private void setCellValue() {
