@@ -32,6 +32,8 @@ public class ViewLoader {
             Scene scene = new Scene(fxmlLoader.load());
             scene.getStylesheets().add(Objects.requireNonNull(ViewLoader.class.getResource(stylePath)).toExternalForm());
             Stage modalStage = new Stage();
+            modalStage.setMinWidth(640);
+            modalStage.setMinHeight(360);
             modalStage.setTitle(title);
             modalStage.initModality(Modality.WINDOW_MODAL);
             modalStage.initOwner(owner);
