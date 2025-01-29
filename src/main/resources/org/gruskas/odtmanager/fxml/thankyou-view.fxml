@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0"
-      prefWidth="640.0" styleClass="custom-pane" stylesheets="@../modal-style.css"
-      xmlns="http://javafx.com/javafx/23.0.1">
+<StackPane prefHeight="360.0" prefWidth="640.0" styleClass="custom-pane" stylesheets="@../modal-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" layoutX="70.0" layoutY="49.0" prefWidth="500.0" spacing="20.0">
+      <VBox alignment="CENTER" spacing="20.0">
          <children>
             <Label text="Thank you for the report">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label text="Thank you for wasting your time reporting this issue. While it might seem like someone will read and fix it, the truth is, it will most likely be ignored with the utmost care. Your effort and enthusiasm are appreciated, even though they won’t make a difference here. Have a nice day!" wrapText="true">
+            <Label prefHeight="96.0" prefWidth="519.0" text="Thank you for wasting your time reporting this issue. While it might seem like someone will read and fix it, the truth is, it will most likely be ignored with the utmost care. Your effort and enthusiasm are appreciated, even though they won’t make a difference here. Have a nice day!" wrapText="true">
                <font>
                   <Font size="15.0" />
                </font>
@@ -24,4 +22,4 @@
          </children>
       </VBox>
    </children>
-</Pane>
+</StackPane>
