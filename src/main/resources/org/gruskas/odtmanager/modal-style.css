@@ -1,10 +1,9 @@
 * {
-    -fx-font-family: "Maple Mono", "Lucida Console", monospace;
-    -fx-background-color: #131022;
+    -fx-background-insets: 0;
     -fx-text-fill: white;
 }
 
-/* CheckBox */
+/*  CheckBox  */
 CheckBox {
     -fx-border-width: 0;
     -fx-cursor: hand;
@@ -33,41 +32,43 @@ CheckBox {
     -fx-border-color: #ccc;
 }
 
-/* Button */
+/*  Button  */
 Button {
     -fx-border-color: #ccc;
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-padding: 6;
     -fx-cursor: hand;
 }
 
 Button:hover {
-    -fx-background-color: black;
-    -fx-background-radius: 10;
-}
-
-
-/* TextField */
-TextField {
-    -fx-border-width: 0;
-    -fx-background-color: white;
-    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: #ffcccc;
+    -fx-background-color: #ffcccc;
     -fx-text-fill: black;
 }
 
-TextField * {
-    -fx-background-color: white;
+
+/*  TextField  */
+TextField {
+    -fx-text-fill: black;
 }
 
-/* Pane */
+/*  Pane  */
 .custom-pane {
     -fx-border-color: #ccc;
     -fx-border-width: 1px;
+    -fx-background-color: #131022;
 }
 
 /* saveConfirm label */
 #saveConfirm {
     -fx-text-fill: green;
+}
+
+/*  Spinner  */
+Spinner * {
+    -fx-text-fill: black;
 }
