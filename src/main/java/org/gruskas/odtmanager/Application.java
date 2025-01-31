@@ -10,6 +10,12 @@ public class Application extends javafx.application.Application {
         ConfigFileManager.createFile();
         ConfigFileManager.readConfig();
 
+        new Thread(() -> {
+            if(ConfigFileManager.archiveFiles) {
+                ArchiveFiles.startBackupScheduler();
+            }
+        }).start();
+
         Application.stage = stage;
 
         ViewLoader.loadMainView(

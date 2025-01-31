@@ -23,7 +23,7 @@
                 <Button layoutX="380.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveButton" text="SAVE" />
                 <CheckBox fx:id="archiveFiles" layoutX="45.0" layoutY="60.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
                 <Label fx:id="saveConfirm" alignment="CENTER_RIGHT" layoutX="197.0" layoutY="317.0" prefHeight="26.0" prefWidth="176.0" />
-                <Pane fx:id="dateInput" layoutX="68.0" layoutY="57.0" prefHeight="26.0" prefWidth="358.0">
+                <Pane fx:id="dateInput" layoutX="68.0" layoutY="57.0" prefHeight="72.0" prefWidth="358.0">
                     <children>
                         <Spinner fx:id="monthsSpinner" editable="true" layoutX="58.0" layoutY="2.0" prefHeight="25.0" prefWidth="58.0" />
                         <Spinner fx:id="weeksSpinner" editable="true" layoutX="170.0" layoutY="2.0" prefHeight="25.0" prefWidth="58.0" />
@@ -31,6 +31,7 @@
                         <Label layoutX="11.0" layoutY="6.0" text="Months" />
                         <Label layoutX="129.0" layoutY="5.0" text="Weeks" />
                         <Label layoutX="236.0" layoutY="5.0" text="Days" />
+                  <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" onAction="#backupNow" text="Backup now" />
                     </children>
                 </Pane>
             </children>

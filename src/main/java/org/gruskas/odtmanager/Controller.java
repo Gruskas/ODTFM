@@ -125,7 +125,7 @@ public class Controller {
         }
     }
 
-    private String getLocalTime() {
+    public static String getLocalTime() {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return today.format(formatter);

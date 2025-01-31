@@ -1,12 +1,14 @@
 package org.gruskas.odtmanager;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ConfigFileManager {
     static File file = new File(System.getProperty("user.home") + File.separator + ".ODTFM.config");
     static String folderPath;
+    static LocalDate lastBackupDate;
     static boolean archiveFiles;
     static int months;
     static int weeks;
@@ -76,11 +78,20 @@ public class ConfigFileManager {
             folderPath = System.getProperty("user.home");
         }
 
-        archiveFiles = Boolean.parseBoolean(configMap.get("Archive files"));
+        archiveFiles = Boolean.parseBoolean(configMap.get("ArchiveFiles"));
         months = parseIntegerOrDefault(configMap.get("Months"));
         weeks = parseIntegerOrDefault(configMap.get("Weeks"));
         days = parseIntegerOrDefault(configMap.get("Days"));
-        System.out.println("months: " + months + ", weeks: " + weeks + ", days: " + days);
+        String lastBackupDateStr = configMap.get("LastBackupDate");
+        if (!lastBackupDateStr.isEmpty()) {
+            try {
+                lastBackupDate = LocalDate.parse(lastBackupDateStr);
+            } catch (Exception e) {
+                System.err.println("Date parsing error: " + lastBackupDateStr);
+                lastBackupDate = null;
+            }
+        }
+        System.out.println("months: " + months + ", weeks: " + weeks + ", days: " + days + ", LastBackupDate: " + lastBackupDate);
     }
 
     private static int parseIntegerOrDefault(String value) {
@@ -97,7 +108,7 @@ public class ConfigFileManager {
     public static boolean saveConfig() {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("Path", folderPath);
-        configMap.put("Archive files", String.valueOf(archiveFiles));
+        configMap.put("ArchiveFiles", String.valueOf(archiveFiles));
         configMap.put("Months", String.valueOf(months));
         configMap.put("Weeks", String.valueOf(weeks));
         configMap.put("Days", String.valueOf(days));
@@ -112,13 +123,15 @@ public class ConfigFileManager {
                 writer.write("#Archive Settings");
                 writer.newLine();
 
-                writer.write("Archive files=" + configMap.get("Archive files"));
+                writer.write("ArchiveFiles=" + configMap.get("ArchiveFiles"));
                 writer.newLine();
                 writer.write("Months=" + configMap.get("Months"));
                 writer.newLine();
                 writer.write("Weeks=" + configMap.get("Weeks"));
                 writer.newLine();
                 writer.write("Days=" + configMap.get("Days"));
+                writer.newLine();
+                writer.write("LastBackupDate=" + (lastBackupDate != null ? lastBackupDate.toString() : ""));
                 writer.newLine();
 
                 hideFile();
