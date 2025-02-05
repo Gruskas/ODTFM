@@ -1,6 +1,5 @@
 * {
     -fx-font-family: "Maple Mono", "Lucida Console", monospace;
-    -fx-background-color: #131022;
     -fx-text-fill: white;
 }
 
@@ -8,6 +7,11 @@
 .folderListView {
     -fx-border-color: #ccc;
     -fx-border-width: 1px 0 0 0;
+    -fx-background-color: transparent;
+}
+
+.folderListView * {
+    -fx-background-color: transparent;
 }
 
 .folderListView .list-cell {
@@ -43,19 +47,27 @@ Button {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-padding: 6;
     -fx-cursor: hand;
 }
 
 Button:hover {
-    -fx-background-color: black;
-    -fx-background-radius: 10;
+    -fx-border-width: 1;
+    -fx-border-color: #ffcccc;
+    -fx-background-color: #ffcccc;
+    -fx-text-fill: black;
 }
 
 /* Table */
 .table-view {
     -fx-border-color: #ccc;
     -fx-border-width: 1px 0 0 1px;
+    -fx-background-color: transparent;
+}
+
+.table-view * {
+    -fx-background-color: transparent;
 }
 
 /* Table column header */
@@ -70,7 +82,7 @@ Button:hover {
 }
 
 .table-row-cell:selected .table-cell {
-    -fx-background-color: #2f2553;
+    /*-fx-background-color: #2f2553;*/
     -fx-font-weight: bold;
     -fx-border-color: #ccc;
     -fx-border-width: 1px;
@@ -86,7 +98,7 @@ Button:hover {
 
 /* Label (text) */
 .label {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent !important;
     -fx-alignment: center;
 }
 
@@ -106,4 +118,21 @@ Button:hover {
     -fx-border-width: 1;
     -fx-background-radius: 7;
     -fx-border-radius: 7;
+}
+
+/* Custom */
+.custom-VBox {
+    -fx-background-color: #131022;
+    /*-fx-background-image: url("66.png");*/
+    /*-fx-background-size: cover;*/
+    /*-fx-background-position: center;*/
+}
+
+.custom-Pane * {
+    -fx-background-color: transparent;
+}
+
+/* Menu */
+.menu * {
+    -fx-background-color: #131022;
 }
