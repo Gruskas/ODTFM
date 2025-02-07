@@ -1,14 +1,15 @@
 package org.gruskas.odtmanager;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
+
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -37,23 +38,6 @@ public class Controller {
     private TableColumn<File, String> dateColumn;
 
     @FXML
-    private void newFile() {
-        String date = getLocalTime();
-        File file = new File(currentFolderPath + File.separator + date + ".odt");
-        try {
-            if (file.createNewFile()) {
-                loadFilesFromFolder(currentFolderPath);
-                System.out.println("Created file: " + file.getName());
-
-            } else {
-                System.out.println("File exist.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     public void initialize() {
         ArrayList<String> folders = FilesAndFolders.getFolders(folderPath);
         folderListView.getItems().addAll(folders);
@@ -74,6 +58,79 @@ public class Controller {
                 if (selectedFile != null && selectedFile.exists()) {
                     openFile(selectedFile);
                 }
+            }
+        });
+
+        contextMenu();
+    }
+
+    @FXML
+    private void newFile() {
+        String date = getLocalTime();
+        File file = new File(currentFolderPath + File.separator + date + ".odt");
+        try {
+            if (file.createNewFile()) {
+                loadFilesFromFolder(currentFolderPath);
+                System.out.println("Created file: " + file.getName());
+
+            } else {
+                System.out.println("File exist.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void contextMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem openItem = new MenuItem("Open");
+        openItem.setOnAction(_ -> {
+            File selectedFile = tableView.getSelectionModel().getSelectedItem();
+            if (selectedFile.exists()) {
+                openFile(selectedFile);
+            }
+        });
+
+        MenuItem renameItem = new MenuItem("Rename");
+        renameItem.setOnAction(_ -> {
+            File selectedFile = tableView.getSelectionModel().getSelectedItem();
+            if (selectedFile.exists()) {
+                String newName = ViewLoader.inputDialogView(
+                        Application.stage,
+                        "fxml/input-dialog.fxml",
+                        "modal-style.css",
+                        "/org/gruskas/odtmanager/logo.png",
+                        "Rename File",
+                        "New name:"
+                );
+
+                if (newName != null && !newName.trim().isEmpty()) {
+                    File newFile = new File(selectedFile.getParent(), newName);
+                    if (selectedFile.renameTo(newFile)) {
+                        loadFilesFromFolder(currentFolderPath);
+                    } else {
+                        System.err.println("Failed to rename file.");
+                    }
+                }
+            }
+        });
+
+        MenuItem deleteItem = new MenuItem("Delete");
+        deleteItem.setOnAction(_ -> {
+            File selectedFile = tableView.getSelectionModel().getSelectedItem();
+            if (selectedFile.exists() && selectedFile.delete()) {
+                loadFilesFromFolder(currentFolderPath);
+            } else {
+                System.err.println("Failed to delete file.");
+            }
+        });
+
+        contextMenu.getItems().addAll(openItem, renameItem, deleteItem);
+
+        tableView.setOnContextMenuRequested(event -> {
+            if (!tableView.getSelectionModel().isEmpty()) {
+                contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
             }
         });
     }
@@ -169,6 +226,31 @@ public class Controller {
         }
     }
 
+    public void startSpotify() {
+        try {
+            ProcessBuilder processBuilder;
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("windows")) {
+                // Windows
+                processBuilder = new ProcessBuilder(System.getProperty("user.home") + "\\AppData\\Roaming\\Spotify\\Spotify.exe");
+            } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+                // Linux
+                processBuilder = new ProcessBuilder("spotify");
+            } else if (os.contains("mac")) {
+                // MacOS
+                processBuilder = new ProcessBuilder("/Applications/Spotify.app/Contents/MacOS/Spotify");
+            } else {
+                throw new UnsupportedOperationException("Unsupported operating system: " + System.getProperty("os.name"));
+            }
+
+            processBuilder.start();
+            System.out.println("Spotify launched!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String formatSize(long size) {
         if (size < 1024) {
             return size + " B";
@@ -199,31 +281,6 @@ public class Controller {
                 "/org/gruskas/odtmanager/logo.png",
                 "OdtFileManager - Report a bug"
         );
-    }
-
-    public void startSpotify() {
-        try {
-            ProcessBuilder processBuilder;
-            String os = System.getProperty("os.name").toLowerCase();
-
-            if (os.contains("windows")) {
-                // Windows
-                processBuilder = new ProcessBuilder(System.getProperty("user.home") + "\\AppData\\Roaming\\Spotify\\Spotify.exe");
-            } else if (os.contains("nix") || os.contains("nux") || os.contains("aix")) {
-                // Linux
-                processBuilder = new ProcessBuilder("spotify");
-            } else if (os.contains("mac")) {
-                // MacOS
-                processBuilder = new ProcessBuilder("/Applications/Spotify.app/Contents/MacOS/Spotify");
-            } else {
-                throw new UnsupportedOperationException("Unsupported operating system: " + System.getProperty("os.name"));
-            }
-
-            processBuilder.start();
-            System.out.println("Spotify launched!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }

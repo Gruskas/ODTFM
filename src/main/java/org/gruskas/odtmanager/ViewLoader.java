@@ -44,4 +44,30 @@ public class ViewLoader {
             e.printStackTrace();
         }
     }
+
+    public static String inputDialogView(Stage owner, String fxmlPath, String stylePath, String iconPath, String title, String contentText) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(fxmlPath));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets().add(Objects.requireNonNull(ViewLoader.class.getResource(stylePath)).toExternalForm());
+            Stage modalStage = new Stage();
+            modalStage.setMinWidth(125);
+            modalStage.setMinHeight(150);
+            modalStage.setTitle(title);
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.initOwner(owner);
+            modalStage.getIcons().add(new Image(Objects.requireNonNull(ViewLoader.class.getResource(iconPath)).toExternalForm()));
+            modalStage.setScene(scene);
+
+            InputDialogController controller = fxmlLoader.getController();
+            controller.setLabelText(contentText);
+
+            modalStage.showAndWait();
+
+            return controller.getInputText();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
