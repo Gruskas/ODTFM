@@ -133,6 +133,16 @@ public class Controller {
                 contextMenu.show(tableView, event.getScreenX(), event.getScreenY());
             }
         });
+
+        tableView.sceneProperty().addListener((_, _, scene) -> {
+            if (scene != null) {
+                scene.addEventFilter(MouseEvent.MOUSE_PRESSED, _ -> {
+                    if (contextMenu.isShowing()) {
+                        contextMenu.hide();
+                    }
+                });
+            }
+        });
     }
 
     private void setCellValue() {
