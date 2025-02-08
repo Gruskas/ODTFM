@@ -72,3 +72,7 @@ TextField {
 Spinner * {
     -fx-text-fill: black;
 }
+
+TextArea {
+    -fx-text-fill: black;
+}
