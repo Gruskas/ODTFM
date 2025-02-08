@@ -35,9 +35,13 @@ public class SettingsController {
     private Label saveConfirm;
 
     @FXML
+    private CheckBox showAllFiles;
+
+    @FXML
     public void saveButton() {
         ConfigFileManager.folderPath = inputTextField.getText();
         ConfigFileManager.archiveFiles = archiveFiles.isSelected();
+        ConfigFileManager.showAllFiles = showAllFiles.isSelected();
         ConfigFileManager.months = monthsSpinner.getValue();
         ConfigFileManager.weeks = weeksSpinner.getValue();
         ConfigFileManager.days = daysSpinner.getValue();
@@ -67,6 +71,7 @@ public class SettingsController {
     public void initialize() {
         inputTextField.setText(ConfigFileManager.folderPath);
         archiveFiles.setSelected(ConfigFileManager.archiveFiles);
+        showAllFiles.setSelected(ConfigFileManager.showAllFiles);
         dateInput.setVisible(archiveFiles.isSelected());
         archiveFiles.selectedProperty().addListener((_, _, selected) -> dateInput.setVisible(selected));
 

@@ -10,6 +10,7 @@ public class ConfigFileManager {
     static String folderPath;
     static LocalDate lastBackupDate;
     static boolean archiveFiles;
+    static boolean showAllFiles;
     static int months;
     static int weeks;
     static int days;
@@ -79,9 +80,12 @@ public class ConfigFileManager {
         }
 
         archiveFiles = Boolean.parseBoolean(configMap.get("ArchiveFiles"));
+        showAllFiles = Boolean.parseBoolean(configMap.get("ShowAllFiles"));
+
         months = parseIntegerOrDefault(configMap.get("Months"));
         weeks = parseIntegerOrDefault(configMap.get("Weeks"));
         days = parseIntegerOrDefault(configMap.get("Days"));
+
         String lastBackupDateStr = configMap.get("LastBackupDate");
         if (!lastBackupDateStr.isEmpty()) {
             try {
@@ -109,6 +113,7 @@ public class ConfigFileManager {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("Path", folderPath);
         configMap.put("ArchiveFiles", String.valueOf(archiveFiles));
+        configMap.put("ShowAllFiles", String.valueOf(showAllFiles));
         configMap.put("Months", String.valueOf(months));
         configMap.put("Weeks", String.valueOf(weeks));
         configMap.put("Days", String.valueOf(days));
@@ -117,6 +122,9 @@ public class ConfigFileManager {
             unhideFile();
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                 writer.write("Path=" + configMap.get("Path"));
+                writer.newLine();
+                writer.newLine();
+                writer.write("ShowAllFiles=" + configMap.get("ShowAllFiles"));
                 writer.newLine();
                 writer.newLine();
 

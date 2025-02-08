@@ -23,12 +23,12 @@ public class FilesAndFolders {
         return folderNames;
     }
 
-    public static ArrayList<File> getFiles(String folderPath) {
+    public static ArrayList<File> getFiles(String folderPath, boolean showAllFiles) {
         File folder = new File(folderPath);
         ArrayList<File> fileList = new ArrayList<>();
 
         if (folder.exists() && folder.isDirectory()) {
-            File[] files = folder.listFiles(file -> file.isFile() && file.getName().endsWith(".odt"));
+            File[] files = folder.listFiles(file -> file.isFile() && (showAllFiles || file.getName().endsWith(".odt")));
             if (files != null) {
                 fileList.addAll(Arrays.asList(files));
             }

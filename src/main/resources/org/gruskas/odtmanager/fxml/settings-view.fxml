@@ -15,10 +15,12 @@
             <children>
                 <Label layoutX="14.0" layoutY="15.0" text="Path to main folder" />
                 <Label layoutX="14.0" layoutY="60.0" prefHeight="18.0" prefWidth="152.0" text="Archive files" />
+            <Label layoutX="14.0" layoutY="104.0" prefHeight="18.0" prefWidth="152.0" text="Show all files" />
             </children>
         </Pane>
         <Pane prefHeight="200.0" prefWidth="200.0" styleClass="custom-pane" HBox.hgrow="ALWAYS">
             <children>
+            <CheckBox fx:id="showAllFiles" layoutX="45.0" layoutY="102.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
                 <TextField fx:id="inputTextField" layoutX="45.0" layoutY="15.0" prefHeight="25.0" prefWidth="350.0" />
                 <Button layoutX="380.0" layoutY="314.0" mnemonicParsing="false" onAction="#saveButton" text="SAVE" />
                 <CheckBox fx:id="archiveFiles" layoutX="45.0" layoutY="60.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
@@ -31,7 +33,7 @@
                         <Label layoutX="11.0" layoutY="6.0" text="Months" />
                         <Label layoutX="129.0" layoutY="5.0" text="Weeks" />
                         <Label layoutX="236.0" layoutY="5.0" text="Days" />
-                  <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" onAction="#backupNow" text="Backup now" />
+                  <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onAction="#backupNow" prefHeight="25.0" prefWidth="102.0" text="Backup now" />
                     </children>
                 </Pane>
             </children>

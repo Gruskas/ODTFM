@@ -159,7 +159,7 @@ public class Controller {
     }
 
     private void loadFilesFromFolder(String folderPath) {
-        ArrayList<File> files = FilesAndFolders.getFiles(folderPath);
+        ArrayList<File> files = FilesAndFolders.getFiles(folderPath, ConfigFileManager.showAllFiles);
         tableView.getItems().clear();
         tableView.getItems().addAll(files);
     }
