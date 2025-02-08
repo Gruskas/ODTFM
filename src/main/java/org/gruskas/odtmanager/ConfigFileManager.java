@@ -29,7 +29,7 @@ public class ConfigFileManager {
     }
 
     public static void hideFile() {
-        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+        if (isWindows()) {
             try {
                 Process process = Runtime.getRuntime().exec("attrib +h \"" + file + "\"");
                 process.waitFor();
@@ -43,7 +43,7 @@ public class ConfigFileManager {
     }
 
     public static void unhideFile() {
-        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+        if (isWindows()) {
             try {
                 Process process = Runtime.getRuntime().exec("attrib -h \"" + file + "\"");
                 process.waitFor();
@@ -149,5 +149,9 @@ public class ConfigFileManager {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("windows");
     }
 }
