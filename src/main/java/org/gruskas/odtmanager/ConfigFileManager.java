@@ -87,7 +87,7 @@ public class ConfigFileManager {
         days = parseIntegerOrDefault(configMap.get("Days"));
 
         String lastBackupDateStr = configMap.get("LastBackupDate");
-        if (!lastBackupDateStr.isEmpty()) {
+        if (lastBackupDateStr != null && !lastBackupDateStr.isEmpty()) {
             try {
                 lastBackupDate = LocalDate.parse(lastBackupDateStr);
             } catch (Exception e) {
