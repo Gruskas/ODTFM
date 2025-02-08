@@ -16,6 +16,8 @@ public class Application extends javafx.application.Application {
             }
         }).start();
 
+        new Tray();
+
         Application.stage = stage;
 
         ViewLoader.loadMainView(
