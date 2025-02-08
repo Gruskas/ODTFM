@@ -125,7 +125,7 @@ Button:hover {
 }
 
 /* Custom */
-.custom-VBox {
+.customVBox {
     -fx-background-color: #131022;
     /*-fx-background-image: url("66.png");*/
     /*-fx-background-size: cover;*/

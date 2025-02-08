@@ -9,6 +9,7 @@ import java.awt.*;
 
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.VBox;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +39,12 @@ public class Controller {
     private TableColumn<File, String> dateColumn;
 
     @FXML
+    private VBox customVBox;
+
+    @FXML
     public void initialize() {
+        setBackGround();
+
         ArrayList<String> folders = FilesAndFolders.getFolders(folderPath);
         folderListView.getItems().addAll(folders);
         folderListView.getSelectionModel().selectedItemProperty().addListener((_, _, newValue) -> {
@@ -62,6 +68,28 @@ public class Controller {
         });
 
         contextMenu();
+    }
+
+    public void setBackGround() {
+        if (ConfigFileManager.cutsomBackground && !ConfigFileManager.pathToImage.isEmpty()) {
+            try {
+                String imagePath = ConfigFileManager.pathToImage;
+                File imageFile = new File(imagePath);
+                if (imageFile.exists() && imageFile.isFile()) {
+                    String imageUrl = imageFile.toURI().toString();
+                    customVBox.setStyle(
+                            "-fx-background-image: url('" + imageUrl + "'); " +
+                                    "-fx-background-size: cover; " +
+                                    "-fx-background-position: center;"
+                    );
+                } else {
+                    System.err.println("Image file does not exist: " + imagePath);
+                }
+            } catch (Exception e) {
+                System.err.println("Failed to set background image.");
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

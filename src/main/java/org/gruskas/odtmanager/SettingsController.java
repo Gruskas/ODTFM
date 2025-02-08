@@ -38,6 +38,15 @@ public class SettingsController {
     private CheckBox showAllFiles;
 
     @FXML
+    public CheckBox cutsomBackground;
+
+    @FXML
+    public Pane cutsomBackgroundPane;
+
+    @FXML
+    public TextField pathToImage;
+
+    @FXML
     public void saveButton() {
         ConfigFileManager.folderPath = inputTextField.getText();
         ConfigFileManager.archiveFiles = archiveFiles.isSelected();
@@ -45,13 +54,18 @@ public class SettingsController {
         ConfigFileManager.months = monthsSpinner.getValue();
         ConfigFileManager.weeks = weeksSpinner.getValue();
         ConfigFileManager.days = daysSpinner.getValue();
+        ConfigFileManager.cutsomBackground = cutsomBackground.isSelected();
+        ConfigFileManager.pathToImage = pathToImage.getText();
 
         System.out.println(
                 "TextField value: " + ConfigFileManager.folderPath + ", \n" +
                         "archiveFiles: " + ConfigFileManager.archiveFiles + ", \n" +
                         "months: " + ConfigFileManager.months + ", \n" +
                         "weeks: " + ConfigFileManager.weeks + ", \n" +
-                        "days: " + ConfigFileManager.days
+                        "days: " + ConfigFileManager.days + ", \n" +
+                        "showAllFiles: " + ConfigFileManager.showAllFiles + ", \n" +
+                        "cutsomBackground: " + ConfigFileManager.cutsomBackground + ", \n" +
+                        "pathToImage: " + ConfigFileManager.pathToImage + ", \n"
         );
 
         if (ConfigFileManager.saveConfig()) {
@@ -59,7 +73,6 @@ public class SettingsController {
             saveConfirm.setText("Config has been saved!");
             refreshMainView();
         }
-
     }
 
     public void backupNow() {
@@ -72,8 +85,13 @@ public class SettingsController {
         inputTextField.setText(ConfigFileManager.folderPath);
         archiveFiles.setSelected(ConfigFileManager.archiveFiles);
         showAllFiles.setSelected(ConfigFileManager.showAllFiles);
+        cutsomBackground.setSelected(ConfigFileManager.cutsomBackground);
+        pathToImage.setText(ConfigFileManager.pathToImage);
+
         dateInput.setVisible(archiveFiles.isSelected());
         archiveFiles.selectedProperty().addListener((_, _, selected) -> dateInput.setVisible(selected));
+        cutsomBackgroundPane.setVisible(cutsomBackground.isSelected());
+        cutsomBackground.selectedProperty().addListener((_, _, selected) -> cutsomBackgroundPane.setVisible(selected));
 
         monthsSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 12, ConfigFileManager.months));
         weeksSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 52, ConfigFileManager.weeks));

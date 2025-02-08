@@ -8,7 +8,9 @@ import java.util.Map;
 public class ConfigFileManager {
     static File file = new File(System.getProperty("user.home") + File.separator + ".ODTFM.config");
     static String folderPath;
+    public static String pathToImage;
     static LocalDate lastBackupDate;
+    public static boolean cutsomBackground;
     static boolean archiveFiles;
     static boolean showAllFiles;
     static int months;
@@ -86,6 +88,9 @@ public class ConfigFileManager {
         weeks = parseIntegerOrDefault(configMap.get("Weeks"));
         days = parseIntegerOrDefault(configMap.get("Days"));
 
+        cutsomBackground = Boolean.parseBoolean(configMap.get("CutsomBackground"));
+        pathToImage = configMap.get("PathToImage");
+
         String lastBackupDateStr = configMap.get("LastBackupDate");
         if (lastBackupDateStr != null && !lastBackupDateStr.isEmpty()) {
             try {
@@ -117,6 +122,8 @@ public class ConfigFileManager {
         configMap.put("Months", String.valueOf(months));
         configMap.put("Weeks", String.valueOf(weeks));
         configMap.put("Days", String.valueOf(days));
+        configMap.put("CutsomBackground", String.valueOf(cutsomBackground));
+        configMap.put("PathToImage", pathToImage);
 
         try {
             unhideFile();
@@ -140,6 +147,12 @@ public class ConfigFileManager {
                 writer.write("Days=" + configMap.get("Days"));
                 writer.newLine();
                 writer.write("LastBackupDate=" + (lastBackupDate != null ? lastBackupDate.toString() : ""));
+                writer.newLine();
+                writer.newLine();
+
+                writer.write("CutsomBackground=" + configMap.get("CutsomBackground"));
+                writer.newLine();
+                writer.write("PathToImage=" + configMap.get("PathToImage"));
                 writer.newLine();
 
                 hideFile();
