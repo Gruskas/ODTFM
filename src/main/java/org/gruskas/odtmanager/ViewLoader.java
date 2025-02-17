@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class ViewLoader {
 
-    public static void loadMainView(Stage stage, String fxmlPath, String stylePath, String iconPath, String title) {
+    public static void loadMainView(Stage stage, String fxmlPath, String stylePath, String iconPath, String title, Tray tray) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(fxmlPath));
             Scene scene = new Scene(fxmlLoader.load());
@@ -20,6 +20,7 @@ public class ViewLoader {
 //        stage.initStyle(StageStyle.UNDECORATED);
             stage.getIcons().add(new Image(Objects.requireNonNull(ViewLoader.class.getResource(iconPath)).toExternalForm()));
             stage.setScene(scene);
+            stage.setOnCloseRequest(_ -> tray.hideToSystemTray());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

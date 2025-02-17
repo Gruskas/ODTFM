@@ -1,5 +1,8 @@
 package org.gruskas.odtmanager;
 
+import javafx.application.Platform;
+import javafx.stage.Stage;
+
 import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
@@ -7,28 +10,27 @@ import javax.imageio.ImageIO;
 
 public class Tray {
 
-    public Tray() {
+    private final Stage stage;
+    private TrayIcon trayIcon;
+
+    public Tray(Stage stage) {
+        this.stage = stage;
+
         if (!SystemTray.isSupported()) {
             System.err.println("System tray is not supported");
             return;
         }
 
-        SystemTray systemTray = SystemTray.getSystemTray();
-        Image trayImage;
         try {
-            trayImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/trayLogo.png")));
-        } catch (IOException e) {
-            System.err.println("Could not load tray icon");
-            e.printStackTrace();
-            return;
-        }
-
-        TrayIcon trayIcon = new TrayIcon(trayImage, "ODTFM");
-        trayIcon.setPopupMenu(createPopupMenu());
-
-        try {
+            SystemTray systemTray = SystemTray.getSystemTray();
+            Image trayImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/trayLogo.png")));
+            trayIcon = new TrayIcon(trayImage, "ODTFM", createPopupMenu());
+            trayIcon.addActionListener(_ -> {
+                System.out.println("Tray icon clicked");
+                showStage();
+            });
             systemTray.add(trayIcon);
-        } catch (AWTException e) {
+        } catch (AWTException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -36,10 +38,43 @@ public class Tray {
     private PopupMenu createPopupMenu() {
         PopupMenu popupMenu = new PopupMenu();
 
+        MenuItem openItem = new MenuItem("Open");
+        openItem.addActionListener(_ -> showStage());
+        popupMenu.add(openItem);
+
         MenuItem exitItem = new MenuItem("Quit");
-        exitItem.addActionListener(_ -> System.exit(0));
+        exitItem.addActionListener(_ -> exitApplication());
         popupMenu.add(exitItem);
 
         return popupMenu;
+    }
+
+    public void hideToSystemTray() {
+        Platform.runLater(() -> {
+            if (stage != null) {
+                System.out.println("Hiding stage to system tray");
+                stage.hide();
+            } else {
+                System.err.println("Stage is null, cannot hide to system tray");
+            }
+        });
+    }
+
+    private void showStage() {
+        if (stage != null) {
+            Platform.runLater(() -> {
+                System.out.println("Showing stage from system tray");
+                stage.show();
+                stage.toFront();
+            });
+        } else {
+            System.err.println("Stage is null, cannot show stage");
+        }
+    }
+
+    private void exitApplication() {
+        SystemTray.getSystemTray().remove(trayIcon);
+        Platform.exit();
+        System.exit(0);
     }
 }

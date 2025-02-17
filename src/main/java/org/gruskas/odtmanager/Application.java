@@ -1,5 +1,6 @@
 package org.gruskas.odtmanager;
 
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
@@ -16,7 +17,8 @@ public class Application extends javafx.application.Application {
             }
         }).start();
 
-        new Tray();
+        Platform.setImplicitExit(false);
+        Tray tray = new Tray(stage);
 
         Application.stage = stage;
 
@@ -25,7 +27,8 @@ public class Application extends javafx.application.Application {
                 "fxml/main-view.fxml",
                 "style.css",
                 "/org/gruskas/odtmanager/logo.png",
-                "OdtFileManager"
+                "OdtFileManager",
+                tray
         );
     }
 
