@@ -23,8 +23,9 @@ public class Tray {
 
         try {
             SystemTray systemTray = SystemTray.getSystemTray();
-            Image trayImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/trayLogo.png")));
+            Image trayImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/org/gruskas/odtmanager/logo.png")));
             trayIcon = new TrayIcon(trayImage, "ODTFM", createPopupMenu());
+            trayIcon.setImageAutoSize(true);
             trayIcon.addActionListener(_ -> {
                 System.out.println("Tray icon clicked");
                 showStage();
