@@ -40,10 +40,10 @@
                   <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onAction="#backupNow" prefHeight="25.0" prefWidth="102.0" text="Backup now" />
                     </children>
                 </Pane>
-            <CheckBox fx:id="customBackground" layoutX="45.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
-            <Pane fx:id="customBackgroundPane" layoutX="68.0" layoutY="148.0" prefHeight="59.0" prefWidth="358.0">
+            <CheckBox fx:id="customBackground" layoutX="45.0" layoutY="157.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <Pane fx:id="customBackgroundPane" layoutX="68.0" layoutY="142.0" prefHeight="50.0" prefWidth="358.0">
                <children>
-                  <TextField fx:id="pathToImage" layoutX="21.0" layoutY="17.0" prefHeight="25.0" prefWidth="190.0" promptText="Path to Image" />
+                  <TextField fx:id="pathToImage" layoutX="29.0" layoutY="12.0" prefHeight="25.0" prefWidth="190.0" promptText="Path to Image" />
                </children>
             </Pane>
             <CheckBox fx:id="tray" layoutX="45.0" layoutY="226.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
@@ -52,7 +52,7 @@
                   <Label layoutX="14.0" layoutY="6.0" text="When clicking X (closing the window)" />
                   <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0">
                      <items>
-                      <MenuItem fx:id="trayExit" mnemonicParsing="false" text="Completely exit ODTFM" />
+                      <MenuItem fx:id="trayExit" mnemonicParsing="false" text="Exit ODTFM completely" />
                       <MenuItem fx:id="trayMinimize" mnemonicParsing="false" text="Minimize ODTFM to the system tray" />
                      </items>
                   </MenuButton>
