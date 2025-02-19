@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -94,7 +95,8 @@ public class SettingsController {
     }
 
     public void backupNow() {
-        if (ArchiveFiles.createBackup()) {
+        LocalDate localtime = LocalDate.now();
+        if (ArchiveFiles.createBackup(localtime)) {
             System.out.println("Backup completed successfully!");
         }
     }
@@ -118,12 +120,12 @@ public class SettingsController {
         weeksSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 52, ConfigFileManager.weeks));
         daysSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 365, ConfigFileManager.days));
 
-        trayExit.setOnAction(event -> {
+        trayExit.setOnAction(_ -> {
             ConfigFileManager.exitOnClose = true;
             menuButton.setText(trayExit.getText());
         });
 
-        trayMinimize.setOnAction(event -> {
+        trayMinimize.setOnAction(_ -> {
             ConfigFileManager.exitOnClose = false;
             menuButton.setText(trayMinimize.getText());
         });

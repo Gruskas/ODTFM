@@ -61,23 +61,29 @@ public class ArchiveFiles {
 
         if (localtime.isAfter(nextBackupDate)) {
             System.out.println("It's time for a backup!");
-            if (createBackup()) {
-                ConfigFileManager.lastBackupDate = localtime;
-                ConfigFileManager.saveConfig();
-            }
+            createBackup(localtime);
         }
     }
 
-    public static boolean createBackup() {
+    public static void updateLastBackupDate(LocalDate localtime) {
+            ConfigFileManager.lastBackupDate = localtime;
+            ConfigFileManager.saveConfig();
+    }
+
+    public static boolean createBackup(LocalDate localtime) {
         File sourceFolder = new File(ConfigFileManager.folderPath);
         File backupFile = new File(Paths.get(System.getProperty("user.home"), "Documents", "ODTFM_" + Controller.getLocalTime().replace(":", "-") + ".zip").toString());
 
         try {
-            return archiveFiles(sourceFolder, backupFile);
+            if (archiveFiles(sourceFolder, backupFile)) {
+                updateLastBackupDate(localtime);
+                return true;
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
+        return false;
     }
 
     public static void startBackupScheduler() {
