@@ -14,6 +14,21 @@ import java.util.Objects;
 public class SettingsController {
 
     @FXML
+    public CheckBox tray;
+
+    @FXML
+    public Pane trayPane;
+
+    @FXML
+    public MenuItem trayExit;
+
+    @FXML
+    public MenuItem trayMinimize;
+
+    @FXML
+    private MenuButton menuButton;
+
+    @FXML
     private TextField inputTextField;
 
     @FXML
@@ -51,6 +66,7 @@ public class SettingsController {
         ConfigFileManager.folderPath = inputTextField.getText();
         ConfigFileManager.archiveFiles = archiveFiles.isSelected();
         ConfigFileManager.showAllFiles = showAllFiles.isSelected();
+        ConfigFileManager.tray = tray.isSelected();
         ConfigFileManager.months = monthsSpinner.getValue();
         ConfigFileManager.weeks = weeksSpinner.getValue();
         ConfigFileManager.days = daysSpinner.getValue();
@@ -65,7 +81,9 @@ public class SettingsController {
                         "days: " + ConfigFileManager.days + ", \n" +
                         "showAllFiles: " + ConfigFileManager.showAllFiles + ", \n" +
                         "cutsomBackground: " + ConfigFileManager.cutsomBackground + ", \n" +
-                        "pathToImage: " + ConfigFileManager.pathToImage + ", \n"
+                        "pathToImage: " + ConfigFileManager.pathToImage + ", \n" +
+                        "tray: " + tray.isSelected() + ", \n" +
+                        "exitOnClose: " + ConfigFileManager.exitOnClose
         );
 
         if (ConfigFileManager.saveConfig()) {
@@ -85,6 +103,7 @@ public class SettingsController {
         inputTextField.setText(ConfigFileManager.folderPath);
         archiveFiles.setSelected(ConfigFileManager.archiveFiles);
         showAllFiles.setSelected(ConfigFileManager.showAllFiles);
+        tray.setSelected(ConfigFileManager.tray);
         cutsomBackground.setSelected(ConfigFileManager.cutsomBackground);
         pathToImage.setText(ConfigFileManager.pathToImage);
 
@@ -92,11 +111,24 @@ public class SettingsController {
         archiveFiles.selectedProperty().addListener((_, _, selected) -> dateInput.setVisible(selected));
         cutsomBackgroundPane.setVisible(cutsomBackground.isSelected());
         cutsomBackground.selectedProperty().addListener((_, _, selected) -> cutsomBackgroundPane.setVisible(selected));
+        trayPane.setVisible(tray.isSelected());
+        tray.selectedProperty().addListener((_, _, selected) -> trayPane.setVisible(selected));
 
         monthsSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 12, ConfigFileManager.months));
         weeksSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 52, ConfigFileManager.weeks));
         daysSpinner.setValueFactory(new IntegerSpinnerValueFactory(0, 365, ConfigFileManager.days));
 
+        trayExit.setOnAction(event -> {
+            ConfigFileManager.exitOnClose = true;
+            menuButton.setText(trayExit.getText());
+        });
+
+        trayMinimize.setOnAction(event -> {
+            ConfigFileManager.exitOnClose = false;
+            menuButton.setText(trayMinimize.getText());
+        });
+
+        menuButton.setText(ConfigFileManager.exitOnClose ? trayExit.getText() : trayMinimize.getText());
     }
 
     private void refreshMainView() {

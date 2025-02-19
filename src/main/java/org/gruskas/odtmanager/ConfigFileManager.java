@@ -10,9 +10,11 @@ public class ConfigFileManager {
     static String folderPath;
     public static String pathToImage;
     static LocalDate lastBackupDate;
-    public static boolean cutsomBackground;
+    static boolean cutsomBackground;
+    static boolean tray;
     static boolean archiveFiles;
     static boolean showAllFiles;
+    static boolean exitOnClose;
     static int months;
     static int weeks;
     static int days;
@@ -84,6 +86,10 @@ public class ConfigFileManager {
         archiveFiles = Boolean.parseBoolean(configMap.get("ArchiveFiles"));
         showAllFiles = Boolean.parseBoolean(configMap.get("ShowAllFiles"));
 
+        String trayValue = configMap.get("Tray");
+        tray = (trayValue == null) ? false : Boolean.parseBoolean(trayValue);
+        exitOnClose = Boolean.parseBoolean(configMap.get("ExitOnClose"));
+
         months = parseIntegerOrDefault(configMap.get("Months"));
         weeks = parseIntegerOrDefault(configMap.get("Weeks"));
         days = parseIntegerOrDefault(configMap.get("Days"));
@@ -119,6 +125,8 @@ public class ConfigFileManager {
         configMap.put("Path", folderPath);
         configMap.put("ArchiveFiles", String.valueOf(archiveFiles));
         configMap.put("ShowAllFiles", String.valueOf(showAllFiles));
+        configMap.put("Tray", String.valueOf(tray));
+        configMap.put("ExitOnClose", String.valueOf(exitOnClose));
         configMap.put("Months", String.valueOf(months));
         configMap.put("Weeks", String.valueOf(weeks));
         configMap.put("Days", String.valueOf(days));
@@ -153,6 +161,10 @@ public class ConfigFileManager {
                 writer.write("CutsomBackground=" + configMap.get("CutsomBackground"));
                 writer.newLine();
                 writer.write("PathToImage=" + configMap.get("PathToImage"));
+                writer.newLine();
+                writer.write("Tray=" + configMap.get("Tray"));
+                writer.newLine();
+                writer.write("ExitOnClose=" + configMap.get("ExitOnClose"));
                 writer.newLine();
 
                 hideFile();

@@ -76,3 +76,7 @@ Spinner * {
 TextArea {
     -fx-text-fill: black;
 }
+
+MenuButton * {
+    -fx-text-fill: black !important;
+}
