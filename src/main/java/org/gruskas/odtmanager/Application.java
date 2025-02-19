@@ -17,8 +17,11 @@ public class Application extends javafx.application.Application {
             }
         }).start();
 
-        Platform.setImplicitExit(false);
-        Tray tray = new Tray(stage);
+        Tray tray = null;
+        if(ConfigFileManager.tray) {
+            Platform.setImplicitExit(false);
+            tray = new Tray(stage);
+        }
 
         Application.stage = stage;
 
