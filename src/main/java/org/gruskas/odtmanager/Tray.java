@@ -31,6 +31,13 @@ public class Tray {
                 showStage();
             });
             systemTray.add(trayIcon);
+
+            if (ConfigFileManager.exitOnClose) {
+                stage.setOnCloseRequest(_ -> exitApplication());
+            } else {
+                Platform.setImplicitExit(false);
+                stage.setOnCloseRequest(_ -> hideToSystemTray());
+            }
         } catch (AWTException | IOException e) {
             e.printStackTrace();
         }

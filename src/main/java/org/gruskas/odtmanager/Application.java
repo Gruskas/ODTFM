@@ -1,6 +1,5 @@
 package org.gruskas.odtmanager;
 
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
@@ -19,7 +18,6 @@ public class Application extends javafx.application.Application {
 
         Tray tray = null;
         if(ConfigFileManager.tray) {
-            Platform.setImplicitExit(false);
             tray = new Tray(stage);
         }
 

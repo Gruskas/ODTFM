@@ -20,7 +20,6 @@ public class ViewLoader {
 //        stage.initStyle(StageStyle.UNDECORATED);
             stage.getIcons().add(new Image(Objects.requireNonNull(ViewLoader.class.getResource(iconPath)).toExternalForm()));
             stage.setScene(scene);
-            stage.setOnCloseRequest(_ -> tray.hideToSystemTray());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
