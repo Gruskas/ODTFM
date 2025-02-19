@@ -40,8 +40,8 @@
                   <Button layoutX="104.0" layoutY="46.0" mnemonicParsing="false" onAction="#backupNow" prefHeight="25.0" prefWidth="102.0" text="Backup now" />
                     </children>
                 </Pane>
-            <CheckBox fx:id="cutsomBackground" layoutX="45.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
-            <Pane fx:id="cutsomBackgroundPane" layoutX="68.0" layoutY="148.0" prefHeight="59.0" prefWidth="358.0">
+            <CheckBox fx:id="customBackground" layoutX="45.0" layoutY="160.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" />
+            <Pane fx:id="customBackgroundPane" layoutX="68.0" layoutY="148.0" prefHeight="59.0" prefWidth="358.0">
                <children>
                   <TextField fx:id="pathToImage" layoutX="21.0" layoutY="17.0" prefHeight="25.0" prefWidth="190.0" promptText="Path to Image" />
                </children>

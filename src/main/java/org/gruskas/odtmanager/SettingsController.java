@@ -53,10 +53,10 @@ public class SettingsController {
     private CheckBox showAllFiles;
 
     @FXML
-    public CheckBox cutsomBackground;
+    public CheckBox customBackground;
 
     @FXML
-    public Pane cutsomBackgroundPane;
+    public Pane customBackgroundPane;
 
     @FXML
     public TextField pathToImage;
@@ -70,7 +70,7 @@ public class SettingsController {
         ConfigFileManager.months = monthsSpinner.getValue();
         ConfigFileManager.weeks = weeksSpinner.getValue();
         ConfigFileManager.days = daysSpinner.getValue();
-        ConfigFileManager.cutsomBackground = cutsomBackground.isSelected();
+        ConfigFileManager.cutsomBackground = customBackground.isSelected();
         ConfigFileManager.pathToImage = pathToImage.getText();
 
         System.out.println(
@@ -104,13 +104,13 @@ public class SettingsController {
         archiveFiles.setSelected(ConfigFileManager.archiveFiles);
         showAllFiles.setSelected(ConfigFileManager.showAllFiles);
         tray.setSelected(ConfigFileManager.tray);
-        cutsomBackground.setSelected(ConfigFileManager.cutsomBackground);
+        customBackground.setSelected(ConfigFileManager.cutsomBackground);
         pathToImage.setText(ConfigFileManager.pathToImage);
 
         dateInput.setVisible(archiveFiles.isSelected());
         archiveFiles.selectedProperty().addListener((_, _, selected) -> dateInput.setVisible(selected));
-        cutsomBackgroundPane.setVisible(cutsomBackground.isSelected());
-        cutsomBackground.selectedProperty().addListener((_, _, selected) -> cutsomBackgroundPane.setVisible(selected));
+        customBackgroundPane.setVisible(customBackground.isSelected());
+        customBackground.selectedProperty().addListener((_, _, selected) -> customBackgroundPane.setVisible(selected));
         trayPane.setVisible(tray.isSelected());
         tray.selectedProperty().addListener((_, _, selected) -> trayPane.setVisible(selected));
 
