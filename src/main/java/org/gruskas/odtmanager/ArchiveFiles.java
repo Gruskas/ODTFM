@@ -1,9 +1,6 @@
 package org.gruskas.odtmanager;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.Period;
@@ -38,17 +35,34 @@ public class ArchiveFiles {
         }
     }
 
-    private static void addFileToZip(File sourceDir, ZipOutputStream zipOut, File nestedFile) throws IOException {
-        String relativePath = sourceDir.toPath().relativize(nestedFile.toPath()).toString();
+    private static void addFileToZip(File sourceDir, ZipOutputStream zipOut, File file) throws IOException {
+        String relativePath = sourceDir.toPath().relativize(file.toPath()).toString();
 
-        try (FileInputStream fis = new FileInputStream(nestedFile)) {
-            zipOut.putNextEntry(new ZipEntry(relativePath));
-            byte[] buffer = new byte[8192];
-            int length;
-            while ((length = fis.read(buffer)) >= 0) {
-                zipOut.write(buffer, 0, length);
+        if (file.isDirectory()) {
+            if (!relativePath.endsWith("/")) {
+                relativePath += "/";
             }
+            zipOut.putNextEntry(new ZipEntry(relativePath));
             zipOut.closeEntry();
+
+            File[] nestedFiles = file.listFiles();
+            if (nestedFiles != null) {
+                for (File nestedFile : nestedFiles) {
+                    addFileToZip(sourceDir, zipOut, nestedFile);
+                }
+            }
+        } else {
+            try (FileInputStream fis = new FileInputStream(file)) {
+                zipOut.putNextEntry(new ZipEntry(relativePath));
+                byte[] buffer = new byte[8192];
+                int length;
+                while ((length = fis.read(buffer)) >= 0) {
+                    zipOut.write(buffer, 0, length);
+                }
+                zipOut.closeEntry();
+            } catch (FileNotFoundException e) {
+                System.err.println("Failed to add file to zip: " + file.getAbsolutePath() + " (Access Denied)");
+            }
         }
     }
 
