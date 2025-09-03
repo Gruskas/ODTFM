@@ -68,6 +68,7 @@ public class Controller {
         });
 
         contextMenu();
+        folderContextMenu();
     }
 
     public void setBackGround() {
@@ -141,6 +142,44 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void folderContextMenu() {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem deleteFolder = new MenuItem("Delete Folder");
+        deleteFolder.setOnAction(_ -> {
+            String selectedFolder = folderListView.getSelectionModel().getSelectedItem();
+            if (selectedFolder != null) {
+                File folder = new File(folderPath + File.separator + selectedFolder);
+                if (folder.exists() && folder.isDirectory()) {
+                    if (folder.delete()) {
+                        folderListView.getItems().remove(selectedFolder);
+                        System.out.println("Deleted folder: " + selectedFolder);
+                    } else {
+                        System.out.println("Failed to delete folder. Make sure it's empty.");
+                    }
+                }
+            }
+        });
+
+        contextMenu.getItems().add(deleteFolder);
+
+        folderListView.setOnContextMenuRequested(event -> {
+            if (!folderListView.getSelectionModel().isEmpty()) {
+                contextMenu.show(folderListView, event.getScreenX(), event.getScreenY());
+            }
+        });
+
+        folderListView.sceneProperty().addListener((_, _, scene) -> {
+            if (scene != null) {
+                scene.addEventFilter(MouseEvent.MOUSE_PRESSED, _ -> {
+                    if (contextMenu.isShowing()) {
+                        contextMenu.hide();
+                    }
+                });
+            }
+        });
     }
 
     private void contextMenu() {
