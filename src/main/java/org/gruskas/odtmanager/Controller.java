@@ -109,7 +109,7 @@ public class Controller {
         File folder = new File(folderPath + File.separator + folderName);
         if (!folder.exists()) {
             if (folder.mkdirs()) {
-//                loadFilesFromFolder(currentFolderPath);
+                refresh(folder);
                 System.out.println("Created folder: " + folder.getName());
             } else {
                 System.out.println("Failed to create folder.");
@@ -117,6 +117,13 @@ public class Controller {
         } else {
             System.out.println("Folder exist.");
         }
+    }
+
+    private void refresh(File folder) {
+        folderListView.getItems().clear();
+        initialize();
+        currentFolderPath = folder.getAbsolutePath();
+        loadFilesFromFolder(currentFolderPath);
     }
 
     @FXML
