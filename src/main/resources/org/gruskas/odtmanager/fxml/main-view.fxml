@@ -53,7 +53,7 @@
                 </Pane>
                 <Pane prefHeight="100.0" prefWidth="1030.0" styleClass="header" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button layoutX="90.0" layoutY="60.0" mnemonicParsing="false" text="New Folder" textAlignment="CENTER" />
+                        <Button layoutX="90.0" layoutY="60.0" mnemonicParsing="false" onAction="#newFolder" text="New Folder" textAlignment="CENTER" />
                         <Button layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#newFile" text="New File" textAlignment="CENTER" />
                     </children>
                 </Pane>

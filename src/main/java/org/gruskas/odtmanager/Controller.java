@@ -93,6 +93,33 @@ public class Controller {
     }
 
     @FXML
+    private void newFolder() {
+        String folderName = ViewLoader.inputDialogView(
+                Application.stage,
+                "fxml/input-dialog.fxml",
+                "modal-style.css",
+                "/org/gruskas/odtmanager/logo.png",
+                "Create New Folder",
+                "Folder name:"
+        );
+        if (folderName == null || folderName.trim().isEmpty()) {
+            System.out.println("Folder name is empty.");
+            return;
+        }
+        File folder = new File(folderPath + File.separator + folderName);
+        if (!folder.exists()) {
+            if (folder.mkdirs()) {
+//                loadFilesFromFolder(currentFolderPath);
+                System.out.println("Created folder: " + folder.getName());
+            } else {
+                System.out.println("Failed to create folder.");
+            }
+        } else {
+            System.out.println("Folder exist.");
+        }
+    }
+
+    @FXML
     private void newFile() {
         String date = getLocalTime();
         File file = new File(currentFolderPath + File.separator + date + ".odt");
