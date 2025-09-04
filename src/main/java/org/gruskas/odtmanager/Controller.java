@@ -306,7 +306,7 @@ public class Controller {
                 if (desktop.isSupported(Desktop.Action.BROWSE)) {
                     URI uri;
                     try {
-                        uri = new URI("https://gruskas.lol");
+                        uri = new URI("https://gruskas.fun");
                     } catch (URISyntaxException e) {
                         throw new RuntimeException(e);
                     }
